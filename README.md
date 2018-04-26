@@ -1,22 +1,13 @@
 # MessageMedia Messages PHP SDK
 [![Travis Build Status](https://api.travis-ci.org/messagemedia/messages-php-sdk.svg?branch=master)](https://travis-ci.org/messagemedia/messages-php-sdk)
+[![composer](https://badge.fury.io/ph/messagemedia%2Fmessages-sdk.svg)](https://packagist.org/packages/messagemedia/messages-sdk)
 
 The MessageMedia Messages API provides a number of endpoints for building powerful two-way messaging applications.
 
 ## ⭐️ Installing via Composer
-Add the following to the dependencies section of your composer.json:
-```json
-{
-    "require": {
-        "messagemedia/messages-sdk": "1.0.0"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "git@github.com:messagemedia/messages-php-sdk.git"
-        }
-    ]
-}
+Run the Composer command to install the latest stable version of the Messages SDK:
+```
+composer require messagemedia/messages-sdk
 ```
 
 ## 🎬 Get Started
@@ -28,10 +19,14 @@ It's easy to get started. Simply enter the API Key and secret you obtained from 
 <?php
 require_once "vendor/autoload.php";
 
-$basicAuthUserName = 'YOUR_API_KEY'; // The username to use with basic authentication
-$basicAuthPassword = 'YOUR_API_SECRET'; // The password to use with basic authentication
+use MessageMediaMessagesLib\MessageMediaMessagesClient;
+use MessageMediaMessagesLib\APIHelper;
 
-$client = new MessageMediaMessagesLib\MessageMediaMessagesClient($basicAuthUserName, $basicAuthPassword);
+$authUserName = 'YOUR_API_KEY'; // The API key to use with basic/HMAC authentication
+$authPassword = 'YOUR_API_SECRET'; // The API secret to use with basic/HMAC authentication
+$useHmacAuthentication = false; // Change to true if you are using HMAC keys
+
+$client = new MessageMediaMessagesLib\MessageMediaMessagesClient($authUserName, $authPassword, $useHmacAuthentication);
 
 $messages = $client->getMessages();
 
@@ -94,10 +89,13 @@ You can get a messsage ID from a sent message by looking at the `message_id` fro
 <?php
 require_once "vendor/autoload.php";
 
-$basicAuthUserName = 'YOUR_API_KEY'; // The username to use with basic authentication
-$basicAuthPassword = 'YOUR_API_SECRET'; // The password to use with basic authentication
+use MessageMediaMessagesLib\MessageMediaMessagesClient;
 
-$client = new MessageMediaMessagesLib\MessageMediaMessagesClient($basicAuthUserName, $basicAuthPassword);
+$authUserName = 'YOUR_API_KEY'; // The API key to use with basic/HMAC authentication
+$authPassword = 'YOUR_API_SECRET'; // The API secret to use with basic/HMAC authentication
+$useHmacAuthentication = false; // Change to true if you are using HMAC keys
+
+$client = new MessageMediaMessagesLib\MessageMediaMessagesClient($authUserName, $authPassword, $useHmacAuthentication);
 
 $messages = $client->getMessages();
 
@@ -114,10 +112,13 @@ You can check for replies that are sent to your messages
 <?php
 require_once "vendor/autoload.php";
 
-$basicAuthUserName = 'YOUR_API_KEY'; // The username to use with basic authentication
-$basicAuthPassword = 'YOUR_API_SECRET'; // The password to use with basic authentication
+use MessageMediaMessagesLib\MessageMediaMessagesClient;
 
-$client = new MessageMediaMessagesLib\MessageMediaMessagesClient($basicAuthUserName, $basicAuthPassword);
+$authUserName = 'YOUR_API_KEY'; // The API key to use with basic/HMAC authentication
+$authPassword = 'YOUR_API_SECRET'; // The API secret to use with basic/HMAC authentication
+$useHmacAuthentication = false; // Change to true if you are using HMAC keys
+
+$client = new MessageMediaMessagesLib\MessageMediaMessagesClient($authUserName, $authPassword, $useHmacAuthentication);
 
 $replies = $client->getReplies();
 
@@ -133,10 +134,13 @@ This endpoint allows you to check for delivery reports to inbound and outbound m
 <?php
 require_once "vendor/autoload.php";
 
-$basicAuthUserName = 'YOUR_API_KEY'; // The username to use with basic authentication
-$basicAuthPassword = 'YOUR_API_SECRET'; // The password to use with basic authentication
+use MessageMediaMessagesLib\MessageMediaMessagesClient;
 
-$client = new MessageMediaMessagesLib\MessageMediaMessagesClient($basicAuthUserName, $basicAuthPassword);
+$authUserName = 'YOUR_API_KEY'; // The API key to use with basic/HMAC authentication
+$authPassword = 'YOUR_API_SECRET'; // The API secret to use with basic/HMAC authentication
+$useHmacAuthentication = false; // Change to true if you are using HMAC keys
+
+$client = new MessageMediaMessagesLib\MessageMediaMessagesClient($authUserName, $authPassword, $useHmacAuthentication);
 
 $deliveryReports = $client->getDeliveryReports();
 
@@ -147,7 +151,10 @@ print_r($result);
 ```
 
 ## 📕 Documentation
-The PHP SDK Documentation can be viewed [here](DOCUMENTATION.md)
+Check out the [full API documentation](DOCUMENTATION.md) for more detailed information.
 
-## 😕 Got Stuck?
+## 😕 Need help?
 Please contact developer support at developers@messagemedia.com or check out the developer portal at [developers.messagemedia.com](https://developers.messagemedia.com/)
+
+## 📃 License
+Apache License. See the [LICENSE](LICENSE) file.
